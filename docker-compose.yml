@@ -18,6 +18,8 @@ services:
     environment:
       - WG_HOST=${WG_HOST}      # WireGuard host IP from the .env file
       - PASSWORD=${WG_PASSWORD} # Admin password for WireGuard from the .env file
+      - PORT=51821                  # Port for the web interface.
+      - WG_PORT=51820               # WireGuard port for VPN traffic.
     volumes:
       - ./wg-easy/data:/etc/wireguard
     ports:
