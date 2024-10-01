@@ -76,6 +76,7 @@ services:
   nginx:
     image: nginx:latest
     restart: unless-stopped
+    network_mode: host
     ports:
       - "80:80"  # Expose port 80 of the container to port 80 on the host
     volumes:
