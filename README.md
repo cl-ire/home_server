@@ -83,8 +83,7 @@ PW:
 
 https://github.com/dani-garcia/vaultwarden?tab=readme-ov-file
 
-acces: http://192.168.0.104:80
-acces: https://192.168.0.104:80
+acces: http://192.168.0.104:82
 
 default login:
 Username:
