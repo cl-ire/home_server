@@ -22,6 +22,23 @@ project-root/
     └── etc-dnsmasq.d/         # Configuration data for Pi-hole
 
 
+## setup
+
+```bash
+
+cd ~/home_server/
+
+cp .env_template .env
+
+sudo usermod -aG docker server  #Add the User to the Docker Group
+logout                          #Log Out and Log Back In
+groups                          #Verify the Permissions
+
+docker compose up -d
+
+
+```
+
 ## services
 
 ### Yacht
@@ -36,10 +53,10 @@ acces: https://192.168.0.104:51821
 
 ### vaultwarden
 
-acces: https://192.168.0.104:51821
+acces: https://192.168.0.104:80
 
 ### pihole
 
-acces: https://192.168.0.104:80
+acces: https://192.168.0.104:81
 
 ### cloudflare tunel
