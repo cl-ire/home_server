@@ -71,8 +71,7 @@ services:
     command: tunnel run
     restart: unless-stopped
     environment:
-      - TUNNEL_TOKEN=${CF_API_TOKEN}
-  
+      - TUNNEL_TOKEN=${CF_API_TOKEN} 
 
 
 volumes:
