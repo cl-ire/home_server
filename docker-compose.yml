@@ -46,6 +46,7 @@ services:
     environment:
       - TZ=${TZ}                 # Timezone from the .env file
       - WEBPASSWORD=${PIHOLE_PASSWORD}  # Pi-hole admin password from the .env file
+      - FTLCONF_LOCAL_IPV4=${PIHOLE_IP} # Pi-hole IP from the .env file
     ports:
       - "53:53/tcp"
       - "53:53/udp"
