@@ -36,27 +36,54 @@ groups                          #Verify the Permissions
 
 docker compose up -d
 
+docker ps
+
+
 
 ```
+
+sudo apt install ufw
+sudo ufw enable
+sudo ufw status
+sudo ufw status verbose
+
+sudo ufw allow 22/tcp
+sudo ufw allow 8000/tcp
+sudo ufw allow 51820/udp
+sudo ufw allow 51821/tcp
+sudo ufw allow 80/tcp
+sudo ufw allow 81/tcp
+sudo ufw allow 53/tcp
+sudo ufw allow 53/udp
+sudo ufw allow 67/udp
+
 
 ## services
 
 ### Yacht
 
-acces: https://192.168.0.104:8000
+https://yacht.sh/docs/Installation/Install
+
+acces: http://192.168.0.104:8000
 
 
 ### Wg-easy
 
-acces: https://192.168.0.104:51821
+https://github.com/WeeJeWel/wg-easy
+
+acces: http://192.168.0.104:51821
 
 
 ### vaultwarden
 
-acces: https://192.168.0.104:80
+https://github.com/dani-garcia/vaultwarden?tab=readme-ov-file
+
+acces: http://192.168.0.104:80
 
 ### pihole
 
-acces: https://192.168.0.104:81
+https://hub.docker.com/r/pihole/pihole
+
+acces: http://192.168.0.104:81
 
 ### cloudflare tunel
