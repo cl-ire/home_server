@@ -36,6 +36,8 @@ services:
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
+    environment:
+      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}  # Allow signups from the .env file
     volumes:
       - ./vaultwarden/vw-data:/data
     ports:
