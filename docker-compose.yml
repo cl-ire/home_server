@@ -16,10 +16,10 @@ services:
     image: ghcr.io/wg-easy/wg-easy
     container_name: wg-easy
     environment:
-      - WG_HOST=${WG_HOST}      # WireGuard host IP from the .env file
-      - PASSWORD_HASH=${WG_PASSWORD} # Admin password for WireGuard from the .env file
-      - PORT=51821                  # Port for the web interface.
-      - WG_PORT=51820               # WireGuard port for VPN traffic.
+      - WG_HOST=${WG_HOST}            # WireGuard host IP from the .env file
+      - PASSWORD_HASH=${WG_PASSWORD}  # Admin password for WireGuard from the .env file
+      - PORT=51821                    # Port for the web interface.
+      - WG_PORT=51820                 # WireGuard port for VPN traffic.
     volumes:
       - ./wg-easy/data:/etc/wireguard
     ports:
@@ -68,7 +68,8 @@ services:
       - ./cloudflared:/etc/cloudflared  # Reference to the local cloudflared directory
     command: tunnel run
     restart: unless-stopped
-
+    environment:
+      - TUNNEL_TOKEN=${CF_API_TOKEN}
 
 volumes:
   yacht:
