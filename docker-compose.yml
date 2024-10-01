@@ -58,6 +58,15 @@ services:
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
+  
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    volumes:
+      - ./cloudflared:/etc/cloudflared  # Reference to the local cloudflared directory
+    command: tunnel run
+    restart: unless-stopped
+
 
 volumes:
   yacht:
