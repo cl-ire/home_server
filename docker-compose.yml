@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  yacht:
+    image: selfhostedpro/yacht
+    container_name: yacht
+    ports:
+      - "8000:8000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - yacht:/config
+    restart: unless-stopped
+    environment:
+      TZ: ${TZ}                 # Timezone from the .env file
+
+  wg-easy:
+    image: ghcr.io/wg-easy/wg-easy
+    container_name: wg-easy
+    environment:
+      - WG_HOST=${WG_HOST}      # WireGuard host IP from the .env file
+      - PASSWORD=${WG_PASSWORD} # Admin password for WireGuard from the .env file
+    volumes:
+      - ./wg-easy/data:/etc/wireguard
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv4.ip_forward=1
+    restart: unless-stopped
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    volumes:
+      - ./vaultwarden/vw-data:/data
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    environment:
+      - TZ=${TZ}                 # Timezone from the .env file
+      - WEBPASSWORD=${PIHOLE_PASSWORD}  # Pi-hole admin password from the .env file
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+    volumes:
+      - ./pihole/etc-pihole:/etc/pihole
+      - ./pihole/etc-dnsmasq.d:/etc/dnsmasq.d
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+
+volumes:
+  yacht:
