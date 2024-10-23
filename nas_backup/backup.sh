@@ -39,14 +39,14 @@ backup() {
     mkdir -p "$backup_path" || { echo "Failed to create backup folder"; exit 1; }
 
     # Stop containers to ensure a consistent backup
-    docker-compose stop vaultwarden wg-easy pihole yacht
+    # docker-compose stop vaultwarden wg-easy pihole yacht
 
     echo "Backing up project directory..."
     cp -r $home_server_path $backup_path || { echo "Failed to backup home server to nas"; exit 1; }
 
 
     # Restart containers
-    docker-compose start vaultwarden wg-easy pihole yacht
+    # docker-compose start vaultwarden wg-easy pihole yacht
 
     echo "Backup completed successfully."
 }

@@ -35,17 +35,17 @@ project-root/
 
 cd ~/home_server/
 
-cp .env_template .env
+cp .env_template .env           # create the env file 
 
-sudo usermod -aG docker server  #Add the User to the Docker Group
-logout                          #Log Out and Log Back In
-groups                          #Verify the Permissions
+sudo usermod -aG docker server  # Add the User to the Docker Group
+logout                          # Log Out and Log Back In
+groups                          # Verify the Permissions
 
-docker compose up -d
+docker compose up -d            # start docker
 
 docker ps
 
-
+docker compose down
 
 ```
 
