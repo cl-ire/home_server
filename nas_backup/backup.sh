@@ -16,9 +16,9 @@ backup_to_nas=true
 # Set backup variables
 set_variables() {
     current_date_time=$(date +"%d-%m-%Y_%H-%M")
-    home_server_path="/home/home_server"
+    home_server_path="/home/home_server/"
     nas_path="/home/nas"
-    backup_path="$nas_path/docker-backup-$current_date_time"
+    backup_path="$nas_path/docker-backup-$current_date_time/"
 }
 
 # Backup function
