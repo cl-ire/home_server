@@ -13,9 +13,15 @@ COPY backup.sh /backup.sh
 # Make the script executable
 RUN chmod +x /backup.sh
 
+# Ensure the log file exists
+RUN touch /var/log/backup.log
+
 # Set up the cron job using an environment variable
 ENV CRON_SCHEDULE="0 2 * * *"
 RUN echo "$CRON_SCHEDULE root /backup.sh >> /var/log/backup.log 2>&1" >> /etc/crontab
 
 # Start cron and tail the log file
 CMD cron && tail -f /var/log/backup.log
+
+# run the backup on startup for testing purposes
+RUN /backup.sh
