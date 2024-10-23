@@ -1,0 +1,21 @@
+FROM ubuntu:latest
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    docker.io \
+    rsync \
+    cron \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the backup script into the container
+COPY backup.sh /backup.sh
+
+# Make the script executable
+RUN chmod +x /backup.sh
+
+# Set up the cron job using an environment variable
+ENV CRON_SCHEDULE="0 2 * * *"
+RUN echo "$CRON_SCHEDULE root /backup.sh >> /var/log/backup.log 2>&1" >> /etc/crontab
+
+# Start cron and tail the log file
+CMD cron && tail -f /var/log/backup.log

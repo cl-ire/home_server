@@ -37,7 +37,13 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     environment:
-      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}  # Allow signups from the .env file
+      - SIGNUPS_ALLOWED=${VAULTWARDEN_SIGNUPS_ALLOWED}  # Allow signups from the .env file
+      - ADMIN_TOKEN=${VAULTWARDEN_ADMIN_TOKEN}          # Admin token from the .env file
+      - PUSH_ENABLED=true
+      - PUSH_INSTALLATION_ID=${VAULTWARDEN_PUSH_INSTALLATION_ID}
+      - PUSH_INSTALLATION_KEY=${VAULTWARDEN_PUSH_INSTALLATION_KEY}
+      - PUSH_RELAY_URI=https://api.bitwarden.eu
+      - PUSH_IDENTITY_URI=https://identity.bitwarden.eu
     volumes:
       - ./vaultwarden/vw-data:/data
     ports:
@@ -73,6 +79,23 @@ services:
     environment:
       - TUNNEL_TOKEN=${CF_API_TOKEN} 
 
+  backup:
+    build:
+      context: ./nas_backup
+      dockerfile: Dockerfile.backup
+    volumes:
+      - nas:/home/nas/
+      - ./:/home/home_server/
+    environment:
+      - NAS_FOLDER=//${NAS_IP}/${NAS_PATH}
+      - CRON_SCHEDULE=${BACKUP_CRON_SCHEDULE}
+    restart: always
+
 
 volumes:
   yacht:
+  nas:
+    driver_opts:
+      type: cifs
+      device: //${NAS_IP}/${NAS_PATH}
+      o: username=${NAS_USERNAME},password=${NAS_PASSWORD},vers=2.1

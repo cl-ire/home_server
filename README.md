@@ -5,17 +5,24 @@
 
 project-root/
 │
-├── .env                      # Single global environment file for all services
+├── .env                       # Single global environment file for all services
 ├── docker-compose.yml         # Main Docker Compose file
 │
-├── yacht/                     # Yacht service files
-│   └── config/                # Config for Yacht (docker volume)
+├── cloudflared/               # Cloudflare 
+│   └── config.yml             # 
+│
+├── nas_backup/                # Cloudflare 
+│   └── backup.sh              # 
+│   └── Dockerfile.backup      # 
+│
+├── vaultwarden/               # Vaultwarden service files
+│   └── vw-data/               # Persistent data for Vaultwarden
 │
 ├── wg-easy/                   # WireGuard Easy service files
 │   └── data/                  # Data storage for WireGuard config files
 │
-├── vaultwarden/               # Vaultwarden service files
-│   └── vw-data/               # Persistent data for Vaultwarden
+├── yacht/                     # Yacht service files
+│   └── config/                # Config for Yacht (docker volume)
 │
 └── pihole/                    # Pi-hole service files
     └── etc-pihole/            # Persistent data for Pi-hole
@@ -76,8 +83,6 @@ https://github.com/WeeJeWel/wg-easy
 
 acces: http://192.168.0.104:51821
 
-default login:
-PW:
 
 ### vaultwarden
 
@@ -85,9 +90,14 @@ https://github.com/dani-garcia/vaultwarden?tab=readme-ov-file
 
 acces: http://192.168.0.104:82
 
-default login:
-Username:
-PW:
+#### enable admin page:
+https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page
+
+#### enable Mobile Client push notification
+https://github.com/dani-garcia/vaultwarden/wiki/Enabling-Mobile-Client-push-notification
+allow 2FA via push notification on smartphone
+
+go to https://bitwarden.com/host/ to get your VAULTWARDEN_PUSH_INSTALLATION_ID and your VAULTWARDEN_PUSH_INSTALLATION_KEY for your env file
 
 ### pihole
 
@@ -95,8 +105,5 @@ https://hub.docker.com/r/pihole/pihole
 
 acces: http://192.168.0.104:81
 
-default login:
-Username:
-PW:
 
 ### cloudflare tunel
