@@ -113,5 +113,5 @@ acces: http://192.168.0.104:81
 manuly trigger a backup 
 
 ```bash
-docker-compose exec backup /backup.sh
+docker compose exec backup /backup.sh
 ```
