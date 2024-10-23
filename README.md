@@ -107,3 +107,11 @@ acces: http://192.168.0.104:81
 
 
 ### cloudflare tunel
+
+### nas backup 
+
+manuly trigger a backup 
+
+```bash
+docker-compose exec backup /backup.sh
+```

@@ -90,6 +90,7 @@ services:
       - NAS_FOLDER=//${NAS_IP}/${NAS_PATH}
       - CRON_SCHEDULE=${BACKUP_CRON_SCHEDULE}
     restart: always
+    tty: true
 
 
 volumes:
