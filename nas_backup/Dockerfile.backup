@@ -22,6 +22,3 @@ RUN echo "$CRON_SCHEDULE root /backup.sh >> /var/log/backup.log 2>&1" >> /etc/cr
 
 # Start cron and tail the log file
 CMD cron && tail -f /var/log/backup.log
-
-# run the backup on startup for testing purposes
-RUN /backup.sh
