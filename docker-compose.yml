@@ -92,6 +92,14 @@ services:
     restart: always
     tty: true
 
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
+    # Optional: Configure Watchtower to update at specific intervals
+    command: --interval 20000
+
 
 volumes:
   yacht:
