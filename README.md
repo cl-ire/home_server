@@ -3,6 +3,7 @@
 
 ## Structure
 
+```bash
 project-root/
 │
 ├── .env                       # Single global environment file for all services
@@ -27,7 +28,7 @@ project-root/
 └── pihole/                    # Pi-hole service files
     └── etc-pihole/            # Persistent data for Pi-hole
     └── etc-dnsmasq.d/         # Configuration data for Pi-hole
-
+```
 
 ## setup
 
